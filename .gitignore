@@ -1,5 +1,6 @@
 # MySQL の設定ファイルを無視
-docker/mysql/data/auto.cnf
-docker/mysql/data/#innodb_temp/
-docker/mysql/data/*.ibd
-docker/mysql/data/binlog*
+# docker/mysql/data/auto.cnf
+# docker/mysql/data/#innodb_temp/
+# docker/mysql/data/*.ibd
+# docker/mysql/data/binlog*
+docker/mysql/data/*

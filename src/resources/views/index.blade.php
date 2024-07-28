@@ -14,7 +14,8 @@
     text-align: center;
   }
 </style>
-@section('title', 'index.blade.php')
+<!-- registerが入るとタイトルがうごいてしまう・・・ -->
+@section('page', 'register')
 
 @section('content')
 <table>
@@ -23,3 +24,4 @@
   </tr>
 </table>
 @endsection
+
