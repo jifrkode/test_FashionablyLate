@@ -30,8 +30,8 @@ Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController
 // Route::get('/admin', [UserController::class, 'admin']);
 // Route::get('/admin', [UserController::class, 'login']);
 
-Route::get('/contact', [ContactController::class, 'index']);
-Route::post('/contact', [ContactController::class, 'post']);
+Route::get('/', [ContactController::class, 'index']);
+Route::post('/', [ContactController::class, 'post']);
 Route::get('/contact/confirm', [ContactController::class, 'confirm']);
 Route::post('/contact/confirm', [ContactController::class, 'send']);
 Route::get('/contact/thanks', [ContactController::class, 'thanks']);
