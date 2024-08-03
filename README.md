@@ -20,5 +20,7 @@ Laravel環境構築
 # URL
 * 開発環境：http://localhost/
 * phpMyadmin：http://localhost:8080/
+# 既知の問題
+* ログアウト後に404になる（ログイン画面に戻らない）
 ## ER図
 <!-- < - - - 作成したER図の画像 - - - > -->

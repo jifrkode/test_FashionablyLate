@@ -1,0 +1,138 @@
+@extends('layouts.common')
+<style>
+  body {
+    height: 100%;
+    background-color: #F1ECE6;
+  }
+
+  .content {
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .create-form__items {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 740px;
+    height: 640px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(197, 185, 176, 1);
+    border-radius: 10px 0px 0px 0px;
+
+    margin: 0 auto;
+    padding: auto 150px;
+    color: rgba(139, 121, 105, 1);
+    font-family: Inika;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 32.57px;
+    text-align: left;
+  }
+
+
+  input {
+    background: rgba(244, 244, 244, 1);
+    width: 445px;
+    height: 55px;
+
+    border: none;
+  }
+
+  input::placeholder {
+    font-family: Inika;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18.24px;
+    text-align: left;
+
+    color: rgba(190, 177, 166, 1);
+  }
+
+  .create-form__button {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100px;
+  }
+
+  button {
+    margin-top: 70px;
+    padding: 10px 40px 10px 40px;
+    gap: 10px;
+    background: rgba(130, 117, 106, 1);
+
+    font-family: Inika;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26.06px;
+    text-align: left;
+
+    border: none;
+
+    color: rgba(255, 255, 255, 1);
+
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+@section('page', 'register')
+
+@section('content')
+<div class="content">
+  <h2 class="content__title">Register</h2>
+  <div class="create-form__items">
+    <form class="create-form" action="/register" method="post">
+      @csrf
+      <div class="create-form__item">
+        <h3 class="create-form__item-ttl">お名前</h3>
+        <input class="create-form__item-input" type="text" placeholder="例:山田　太郎" name="name" value="{{ old('name') }}">
+      </div>
+      <div class="create-form__item">
+        <h3 class="create-form__item-ttl">メールアドレス</h3>
+        <input class="create-form__item-input" type="text" placeholder="例:test@example.com" name="email" value="{{ old('email') }}">
+      </div>
+      <div class="create-form__item">
+        <h3 class="create-form__item-ttl">パスワード</h3>
+        <input class="create-form__item-input" type="text" placeholder="例:coatchtech1106" name="password" value="{{ old('password') }}">
+      </div>
+      <div class="create-form__button">
+        <button class="create-form__button-submit" type="submit">登録</button>
+      </div>
+  </div>
+  </form>
+</div>
+
+<table>
+  @if($errors->has('name'))
+  <tr>
+    <th style="background-color: red">ERROR</th>
+    <td>
+      {{$errors->first('name')}}
+    </td>
+  </tr>
+  @endif
+  @if($errors->has('email'))
+  <tr>
+    <th style="background-color: red">ERROR</th>
+    <td>
+      {{$errors->first('email')}}
+    </td>
+  </tr>
+  @endif
+  @if($errors->has('password'))
+  <tr>
+    <th style="background-color: red">ERROR</th>
+    <td>
+      {{$errors->first('password')}}
+    </td>
+  </tr>
+  @endif
+</table>
+@endsection

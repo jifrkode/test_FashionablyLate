@@ -4,3 +4,4 @@
 # docker/mysql/data/*.ibd
 # docker/mysql/data/binlog*
 docker/mysql/data/*
+.env

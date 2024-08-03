@@ -8,44 +8,85 @@
   <style>
     @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
 
-
     .header {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      height: 70px;
-      padding: 0 30px;
+
       background-color: #FFFFFF;
       color: #8b7969;
       font-family: 'Noto Serif JP', sans-serif;
+
+      border-bottom: 1px solid #8b7969;
     }
 
     .header-ttl {
-      font-size: 24px;
-      width: 80px;
       text-align: center;
-      flex-grow: 1;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 52.12px;
+
     }
 
-    .header-nav-item:not(:last-child) {
-      margin-right: 30px;
+    .header-nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      position: absolute;
+      top: 50px;
+      right: 100px;
+      padding: 5px 10px;
+
+      border: 1px solid rgba(217, 198, 181, 1);
+      background-color: #F6F6F6;
+      color: rgba(217, 198, 181, 1);
+      /* 内側の余白を追加 */
     }
 
     a {
       text-decoration: none;
       color: inherit;
     }
-  </style>
+
+    .content__title {
+      display: flex;
+      justify-content: center;
+      color: #8b7969;
+      font-family: 'Noto Serif JP', sans-serif;
+    }
+    </style>
+    @livewireStyles
 </head>
 <header class="header">
   <h1 class="header-ttl">
-    <a href="">FashionablyLate</a>
+    <a href="/login">FashionablyLate</a>
   </h1>
-  @if(trim($__env->yieldContent('page')) === 'register')
-  <nav class="header-nav">
-    <a href="https://estra-inc.notion.site/85fa2ceff6ee475d8a64873488aceda3#af4df8d0416b4584b8940cdf423c5ced">
-      register
-    </a>
+  @php
+  $page = trim($__env->yieldContent('page'));
+  $links = [
+  'register' => ['text' => 'login', 'url' => '/login'],
+  'login' => ['text' => 'register', 'url' => '/register'],
+  'admin' => ['text' => 'logout', 'url' => '/logout', 'method' => 'post'],
+  'contact' => ['text' => 'contact', 'url' => '/contact/index']
+  ];
+  @endphp
+  @if(array_key_exists($page, $links))
+  <nav>
+    <div class="header-nav">
+    @if($page === 'admin')
+        <form id="logout-form" action="{{ $links[$page]['url'] }}" method="POST" style="display: none;">
+          @csrf
+        </form>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          {{ $links[$page]['text'] }}
+        </a>
+        @else
+        <a href="{{ $links[$page]['url'] }}">
+          {{ $links[$page]['text'] }}
+        </a>
+        @endif
+      </div>
+    </div>
   </nav>
   @endif
 </header>
@@ -53,6 +94,7 @@
 <body>
   <div class="content">
     @yield('content')
+    @livewireScripts
   </div>
 </body>
 
