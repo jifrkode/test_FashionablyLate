@@ -7,8 +7,6 @@
     flex-flow: column;
   }
 
-  table {
-  }
   
   th {
     border: 1px solid;
